@@ -15,10 +15,11 @@ A command-line tool for managing files in Cloudinary with automatic compression,
 ## Quick Start
 
 ```bash
-# Install
-./install.sh
+# One-line install
+curl -sSL https://raw.githubusercontent.com/0xohzsh/cloudinary-cli/main/quick-install.sh | bash
 
 # Configure (add your Cloudinary credentials)
+cd cloudinary-cli
 nano .env
 
 # Use
