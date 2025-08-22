@@ -63,8 +63,9 @@ def upload_single_file(file_path, cloud_folder, skip_duplicates=True):
                 resource_type = get_resource_type(volume_file)
 
                 # Check for duplicates if enabled
+                final_public_id = f"{current_cloud_folder}/{volume_filename}"
                 if skip_duplicates and check_file_exists(
-                    volume_public_id, resource_type
+                    final_public_id, resource_type
                 ):
                     print(
                         f"⏭️  Skipping volume {i+1}/{len(compressed_files)} - already exists"
@@ -79,7 +80,8 @@ def upload_single_file(file_path, cloud_folder, skip_duplicates=True):
                     result = cloudinary.uploader.upload(
                         volume_file,
                         resource_type=resource_type,
-                        public_id=volume_public_id,
+                        folder=current_cloud_folder,
+                        public_id=volume_filename,
                         use_filename=True,
                         unique_filename=should_use_unique_names(),
                     )
@@ -110,7 +112,8 @@ def upload_single_file(file_path, cloud_folder, skip_duplicates=True):
             resource_type = get_resource_type(upload_file)
 
             # Check for duplicates if enabled
-            if skip_duplicates and check_file_exists(public_id, resource_type):
+            final_public_id = f"{current_cloud_folder}/{cloudinary_filename}"
+            if skip_duplicates and check_file_exists(final_public_id, resource_type):
                 display_name = (
                     os.path.basename(upload_file) if was_compressed else filename
                 )
@@ -132,7 +135,8 @@ def upload_single_file(file_path, cloud_folder, skip_duplicates=True):
                 result = cloudinary.uploader.upload(
                     upload_file,
                     resource_type=resource_type,
-                    public_id=target_public_id,
+                    folder=current_cloud_folder,
+                    public_id=cloudinary_filename,
                     use_filename=True,
                     unique_filename=should_use_unique_names(),
                 )
