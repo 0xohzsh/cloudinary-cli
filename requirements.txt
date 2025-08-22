@@ -1,0 +1,9 @@
+cloudinary==1.36.0
+python-dotenv==1.0.0
+requests==2.31.0
+
+# System requirements:
+# - 7z (p7zip): For large file compression
+#   macOS: brew install p7zip (provides 7zz command)
+#   Linux: apt-get install p7zip-full (provides 7z command)
+#   Windows: Download from 7-zip.org (provides 7z.exe command)
